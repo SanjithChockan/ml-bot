@@ -1,4 +1,3 @@
-
 bot_name = "bot"
 
 def get_user():
@@ -19,7 +18,7 @@ def chatbot_loop():
             break
         # bot response
         bot_response = respond()
-        print(f'{bot_name}: {bot_response}') 
+        print(f'{bot_name}: {bot_response}')
     print(f'{bot_name}: Have a nice day!')
 
 if __name__ == "__main__":
