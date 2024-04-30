@@ -99,26 +99,12 @@ def get_dialogues():
     dialogue_df = pd.read_csv(
         "dataset/Harry_Potter_Movies/Dialogue.csv", encoding="unicode_escape"
     )
-    dialogue_df = dialogue_df[
-        [
-            "Character ID",
-            "Dialogue",
-        ]
-    ].copy()
-
+    dialogue_df = dialogue_df[["Character ID", "Dialogue",]].copy()
     # condense consecutive values in dataframe
-    grp = (
-        (dialogue_df["Character ID"] != dialogue_df["Character ID"].shift())
-        .cumsum()
-        .rename("group")
-    )
+    grp = ((dialogue_df["Character ID"] != dialogue_df["Character ID"].shift()).cumsum().rename("group"))
     dialogue_df_grp = (
-        dialogue_df.groupby(["Character ID", grp], sort=False)["Dialogue"]
-        .agg(" ".join)
-        .reset_index()
-        .drop("group", axis=1)
-    )
-
+        dialogue_df.groupby(
+            ["Character ID", grp], sort=False)["Dialogue"].agg(" ".join).reset_index().drop("group", axis=1))
     return dialogue_df_grp
 
 
